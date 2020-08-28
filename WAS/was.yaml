@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: was-deployment
+  namespace: bpichincha
+  labels:
+    app: was
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: was
+  template:
+    metadata:
+      labels:
+        app: was
+    spec:
+      containers:
+      - name: was
+        image: ibmcom/websphere-traditional:8.5.5.17-ubi
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: http
+        - containerPort: 9443
+          name: https
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "400m"
+          limits:
+            memory: "700Mi"
+            cpu: "1000m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: was
+spec:
+  selector:
+    app: was
+  ports:
+  - protocol: TCP
+    port: 9080
+    name: http
+  - protocol: TCP
+    port: 9443
+    name: https
+
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: mybank
+  namespace: bpichincha
+spec:
+  to:
+    kind: Service
+    name: was
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None
