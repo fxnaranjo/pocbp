@@ -1,0 +1,113 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iib-config
+  namespace: bpichincha
+data:
+  LICENSE: "accept"
+  NODENAME: "MYNODE"
+  SERVERNAME: "MYSERVER"
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iib-deployment
+  namespace: bpichincha
+  labels:
+    app: iib
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iib
+  template:
+    metadata:
+      labels:
+        app: iib
+    spec:
+      imagePullSecrets:
+        - name: external-registry
+      containers:
+      - name: iib
+        image: us.icr.io/pocbp/iib:1
+        env:
+          - name: LICENSE
+            valueFrom:
+              configMapKeyRef:
+                name: iib-config
+                key: LICENSE
+          - name: NODENAME
+            valueFrom:
+              configMapKeyRef:
+                name: iib-config
+                key: NODENAME
+          - name: SERVERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: iib-config
+                key: SERVERNAME
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4414
+          name: console
+        - containerPort: 7800
+          name: http
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "400m"
+          limits:
+            memory: "700Mi"
+            cpu: "1000m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: iib
+spec:
+  selector:
+    app: iib
+  ports:
+  - protocol: TCP
+    port: 4414
+    name: console
+  - protocol: TCP
+    port: 7800
+    name: http
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: iib-console
+  namespace: bpichincha
+spec:
+  to:
+    kind: Service
+    name: iib
+    weight: 100
+  port:
+    targetPort: console
+  wildcardPolicy: None
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: iib-http
+  namespace: bpichincha
+spec:
+  to:
+    kind: Service
+    name: iib
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None

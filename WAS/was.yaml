@@ -15,9 +15,11 @@ spec:
       labels:
         app: was
     spec:
+      imagePullSecrets:
+        - name: external-registry
       containers:
       - name: was
-        image: ibmcom/websphere-traditional:8.5.5.17-ubi
+        image: us.icr.io/pocbp/was:1
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
@@ -55,7 +57,7 @@ spec:
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: mybank
+  name: was-http
   namespace: bpichincha
 spec:
   to:
