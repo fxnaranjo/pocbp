@@ -4,6 +4,7 @@ echo "Hello,what do you want to deploy today:"
 echo "1.- NGINX"
 echo "2.- Websphere Application Server"
 echo "3.- IBM Integration Bus"
+echo "4.- IBM App Connect Enterprise"
 echo "***********************************************************************"
 
 
@@ -25,7 +26,11 @@ case "$varname" in
             oc apply -f IIB/iib.yaml
             echo "********** DONE IIB**********"
             ;;
-         
+        4)
+            echo "********** DEPLOYING ACE **********"
+            oc apply -f ACE/ace.yaml
+            echo "********** DONE ACE**********"
+            ;;
         *)
             echo "Not a valid option"
             exit 1

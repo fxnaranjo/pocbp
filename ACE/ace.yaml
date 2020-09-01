@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: iib-config
+  name: ace-config
   namespace: ibmpoc
 data:
   LICENSE: "accept"
-  NODENAME: "MYNODE"
-  SERVERNAME: "MYSERVER"
+  ACE_SERVER_NAME: "MYSERVER"
+  ACE_ENABLE_METRICS: "true"
 
 ---
 
@@ -14,44 +14,44 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iib-deployment
+  name: ace-deployment
   namespace: ibmpoc
   labels:
-    app: iib
+    app: ace
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: iib
+      app: ace
   template:
     metadata:
       labels:
-        app: iib
+        app: ace
     spec:
       imagePullSecrets:
         - name: external-registry
       containers:
-      - name: iib
-        image: us.icr.io/pocbp/iib:1
+      - name: ace
+        image: us.icr.io/pocbp/ace:1
         env:
           - name: LICENSE
             valueFrom:
               configMapKeyRef:
-                name: iib-config
+                name: ace-config
                 key: LICENSE
-          - name: NODENAME
+          - name: ACE_SERVER_NAME
             valueFrom:
               configMapKeyRef:
-                name: iib-config
-                key: NODENAME
-          - name: SERVERNAME
+                name: ace-config
+                key: ACE_SERVER_NAME
+          - name: ACE_ENABLE_METRICS
             valueFrom:
               configMapKeyRef:
-                name: iib-config
-                key: SERVERNAME
+                name: ace-config
+                key: ACE_ENABLE_METRICS
         imagePullPolicy: Always
         ports:
-        - containerPort: 4414
+        - containerPort: 7600
           name: console
         - containerPort: 7800
           name: http
@@ -68,13 +68,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: iib
+  name: ace
 spec:
   selector:
-    app: iib
+    app: ace
   ports:
   - protocol: TCP
-    port: 4414
+    port: 7600
     name: console
   - protocol: TCP
     port: 7800
@@ -85,12 +85,12 @@ spec:
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: iib-console
+  name: ace-console
   namespace: ibmpoc
 spec:
   to:
     kind: Service
-    name: iib
+    name: ace
     weight: 100
   port:
     targetPort: console
@@ -101,12 +101,12 @@ spec:
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: iib-http
+  name: ace-http
   namespace: ibmpoc
 spec:
   to:
     kind: Service
-    name: iib
+    name: ace
     weight: 100
   port:
     targetPort: http

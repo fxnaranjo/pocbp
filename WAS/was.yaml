@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: was-deployment
-  namespace: bpichincha
+  namespace: ibmpoc
   labels:
     app: was
 spec:
@@ -58,7 +58,7 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: was-http
-  namespace: bpichincha
+  namespace: ibmpoc
 spec:
   to:
     kind: Service

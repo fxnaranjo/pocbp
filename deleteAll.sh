@@ -4,6 +4,7 @@ echo "Hello,what do you want to deploy today:"
 echo "1.- NGINX"
 echo "2.- Websphere Application Server"
 echo "3.- IBM Integration Bus"
+echo "4.- IBM App Connect Enterprise"
 echo "***********************************************************************"
 
 
@@ -24,6 +25,11 @@ case "$varname" in
             echo "********** DELETING IIB **********"
             oc delete -f IIB/iib.yaml
             echo "********** DONE IIB**********"
+            ;;
+        4)
+            echo "********** DELETING ACE **********"
+            oc delete -f ACE/ace.yaml
+            echo "********** DONE ACE**********"
             ;;
          
         *)
