@@ -5,6 +5,7 @@ echo "1.- NGINX"
 echo "2.- Websphere Application Server"
 echo "3.- IBM Integration Bus"
 echo "4.- IBM App Connect Enterprise"
+echo "5.- IBM Operational Decision Manager for Developers"
 echo "***********************************************************************"
 
 
@@ -30,6 +31,11 @@ case "$varname" in
             echo "********** DELETING ACE **********"
             oc delete -f ACE/ace.yaml
             echo "********** DONE ACE**********"
+            ;;
+        5)
+            echo "********** DELETING ODM **********"
+            oc delete -f ODM/odm.yaml
+            echo "********** DONE ODM**********"
             ;;
          
         *)

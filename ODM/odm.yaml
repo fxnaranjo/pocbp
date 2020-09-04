@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: odm-config
+  namespace: ibmpoc
+data:
+  LICENSE: "accept"
+  SAMPLE: "true"
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odm-deployment
+  namespace: ibmpoc
+  labels:
+    app: odm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: odm
+  template:
+    metadata:
+      labels:
+        app: odm
+    spec:
+      imagePullSecrets:
+        - name: external-registry
+      containers:
+      - name: odm
+        image: us.icr.io/pocbp/odm:1
+        env:
+          - name: LICENSE
+            valueFrom:
+              configMapKeyRef:
+                name: odm-config
+                key: LICENSE
+          - name: SAMPLE
+            valueFrom:
+              configMapKeyRef:
+                name: odm-config
+                key: SAMPLE
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9060
+          name: http
+        resources:
+          requests:
+            memory: "3072Mi"
+            cpu: "1000m"
+          limits:
+            memory: "4096Mi"
+            cpu: "1800m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: odm
+spec:
+  selector:
+    app: odm
+  ports:
+  - protocol: TCP
+    port: 9060
+    name: http
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: odm-http
+  namespace: ibmpoc
+spec:
+  to:
+    kind: Service
+    name: odm
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None
