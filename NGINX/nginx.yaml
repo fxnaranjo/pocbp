@@ -11,3 +11,5 @@ spec:
   containers:
   - name: myapp-container
     image: us.icr.io/pocbp/nginx:1
+  nodeSelector:
+    connection: ready

@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: was-config
+  namespace: ibmpoc
+data:
+  TCSCRYPTOEXTERNAL_CONFIG_PATH: "/apps/proy/wsnotificador/conf/keys/"
+  PWD: "/opt/IBM/WebSphere/AppServer/java/jre/lib/security/"
+---
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,9 +28,22 @@ spec:
     spec:
       imagePullSecrets:
         - name: external-registry
+      nodeSelector:
+        connection: ready
       containers:
       - name: was
-        image: us.icr.io/pocbp/was:1
+        image: fxnaranjom/pocibmwas:1
+        env:
+          - name: TCSCRYPTOEXTERNAL_CONFIG_PATH
+            valueFrom:
+              configMapKeyRef:
+                name: was-config
+                key: TCSCRYPTOEXTERNAL_CONFIG_PATH
+          - name: PWD
+            valueFrom:
+              configMapKeyRef:
+                name: was-config
+                key: PWD
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
