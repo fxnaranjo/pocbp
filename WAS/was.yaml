@@ -30,9 +30,16 @@ spec:
         - name: external-registry
       nodeSelector:
         connection: ready
+      volumes:
+        - name: apps
+          persistentVolumeClaim:
+            claimName: apps-pvc
       containers:
       - name: was
         image: fxnaranjom/pocibmwas:1
+        volumeMounts:
+        - mountPath: "/apps"
+          name: apps
         env:
           - name: TCSCRYPTOEXTERNAL_CONFIG_PATH
             valueFrom:
