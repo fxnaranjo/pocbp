@@ -5,7 +5,6 @@ metadata:
   namespace: ibmpoc
 data:
   TCSCRYPTOEXTERNAL_CONFIG_PATH: "/apps/proy/wsnotificador/conf/keys/"
-  PWD: "/opt/IBM/WebSphere/AppServer/java/jre/lib/security/"
 ---
 
 
@@ -46,11 +45,6 @@ spec:
               configMapKeyRef:
                 name: was-config
                 key: TCSCRYPTOEXTERNAL_CONFIG_PATH
-          - name: PWD
-            valueFrom:
-              configMapKeyRef:
-                name: was-config
-                key: PWD
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
