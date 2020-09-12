@@ -55,6 +55,8 @@ spec:
           name: console
         - containerPort: 7800
           name: http
+        - containerPort: 9443
+          name: mqconsole
         resources:
           requests:
             memory: "500Mi"
@@ -79,6 +81,9 @@ spec:
   - protocol: TCP
     port: 7800
     name: http
+  - protocol: TCP
+    port: 9443
+    name: mqconsole
 
 ---
 
@@ -111,3 +116,24 @@ spec:
   port:
     targetPort: http
   wildcardPolicy: None
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: mqconsole
+  namespace: ibmpoc
+spec:
+  to:
+    kind: Service
+    name: iibmq
+    weight: 100
+  port:
+    targetPort: mqconsole
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None
+
+
