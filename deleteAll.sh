@@ -1,13 +1,15 @@
 #!/bin/bash
 echo "***********************************************************************"
-echo "Hello,what do you want to deploy today:"
+echo "Hello,what do you want to delete today:"
 echo "1.- NGINX"
 echo "2.- Websphere Application Server"
 echo "3.- IBM Integration Bus"
 echo "4.- IBM Integration Bus + MQ"
 echo "5.- IBM App Connect Enterprise"
-echo "6.- IBM Operational Decision Manager for Developers"
+echo "6.- IBM App Connect Enterprise + MQ" 
+echo "7.- IBM Operational Decision Manager for Developers"
 echo "***********************************************************************"
+
 
 
 read varname
@@ -39,8 +41,13 @@ case "$varname" in
             echo "********** DONE ACE**********"
             ;;
         6)
-            echo "********** DELETING ODM **********"
-            oc delete -f ODM/odm.yaml
+            echo "********** DEPLOYING ACE+MQ **********"
+            oc delete -f ACE-MQ/ace-mq.yaml
+            echo "********** DONE ACE+MQ**********"
+            ;;
+        7)
+            echo "********** DEPLOYING ODM **********"
+            oc apply -f ODM/odm.yaml
             echo "********** DONE ODM**********"
             ;;
          

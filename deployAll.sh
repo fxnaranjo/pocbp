@@ -6,7 +6,8 @@ echo "2.- IBM Websphere Application Server"
 echo "3.- IBM Integration Bus"
 echo "4.- IBM Integration Bus + MQ"
 echo "5.- IBM App Connect Enterprise"
-echo "6.- IBM Operational Decision Manager for Developers"
+echo "6.- IBM App Connect Enterprise + MQ" 
+echo "7.- IBM Operational Decision Manager for Developers"
 echo "***********************************************************************"
 
 
@@ -39,6 +40,11 @@ case "$varname" in
             echo "********** DONE ACE**********"
             ;;
         6)
+            echo "********** DEPLOYING ACE+MQ **********"
+            oc apply -f ACE-MQ/ace-mq.yaml
+            echo "********** DONE ACE+MQ**********"
+            ;;
+        7)
             echo "********** DEPLOYING ODM **********"
             oc apply -f ODM/odm.yaml
             echo "********** DONE ODM**********"
