@@ -29,6 +29,26 @@ spec:
     server: 10.50.8.114
 
 ---
+
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ace-pv2
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs03
+  nfs:
+    path: /nfs/Traces/
+    server: 10.50.8.114
+
+---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -41,6 +61,21 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: nfs02
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ace-pvc2
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: nfs03
   
 
 ---
@@ -69,12 +104,17 @@ spec:
         - name: ace
           persistentVolumeClaim:
             claimName: ace-pvc
+        - name: ace2
+          persistentVolumeClaim:
+            claimName: ace-pvc2
       containers:
       - name: acemq
         image: fxnaranjom/pocibmace:1
         volumeMounts:
         - mountPath: "/etc/IntegrationBus/"
           name: ace
+        - mountPath: "/Traces/"
+          name: ace2
         env:
           - name: LICENSE
             valueFrom:
