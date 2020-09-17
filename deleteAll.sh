@@ -41,7 +41,7 @@ case "$varname" in
             echo "********** DONE ACE**********"
             ;;
         6)
-            echo "********** DEPLOYING ACE+MQ **********"
+            echo "********** DELETING ACE+MQ **********"
             oc delete -f ACE-MQ/ace-mq.yaml
             echo "********** DONE ACE+MQ**********"
             ;;
