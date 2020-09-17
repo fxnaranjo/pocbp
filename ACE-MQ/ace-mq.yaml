@@ -7,10 +7,7 @@ data:
   LICENSE: "accept"
   ACE_SERVER_NAME: "ACESERVER"
   MQ_QMGR_NAME: "QMGR"
-  ACE_ENABLE_METRICS: "true"
-  ACE_TRUSTSTORE_PASSWORD: "020kw30"
-  ACE_KEYSTORE_PASSWORD: "020kw30"
-
+  ACE_ENABLE_METRICS: "true"  
 
 ---
 
@@ -177,16 +174,6 @@ spec:
               configMapKeyRef:
                 name: acemq-config
                 key: MQ_QMGR_NAME
-          - name: ACE_TRUSTSTORE_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: acemq-config
-                key: ACE_TRUSTSTORE_PASSWORD
-          - name: ACE_KEYSTORE_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: acemq-config
-                key: ACE_KEYSTORE_PASSWORD
         imagePullPolicy: Always
         ports:
         - containerPort: 7600
