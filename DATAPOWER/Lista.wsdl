@@ -1,0 +1,677 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+<wsdl:types>
+<s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<s:element name="metCheckName">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckNameResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="metCheckNameResult" type="s:boolean"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMensaje" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metAlternateSearch">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strAlternate" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metAlternateSearchResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="metAlternateSearchResult" type="s:boolean"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMensaje" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metIDVerification">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoOrganizacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strFirstName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMiddleName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strLastName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metIDVerificationResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="metIDVerificationResult" type="s:boolean"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMensaje" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckNameSBS">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckNameSBSResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="1" maxOccurs="1" name="metCheckNameSBSResult" type="s:boolean"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMensaje" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metIDVerification_ASPClasico">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoOrganizacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strFirstName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMiddleName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strLastName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metIDVerification_ASPClasicoResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="metIDVerification_ASPClasicoResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metAlternateSearch_ASPClasico">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strAlternate" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metAlternateSearch_ASPClasicoResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="metAlternateSearch_ASPClasicoResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckNameSBS_ASPClasico">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckNameSBS_ASPClasicoResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="metCheckNameSBS_ASPClasicoResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckEditorSwift_ASPClasico">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="strCodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strReferencia" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strNombreBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDireccionBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCiudadBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strPaisBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIdentificacionBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoOrganizacionOrdenante" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoIdentificacionOrdenante" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIdentificacionOrdenante" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strPrimerNombreOrdenante" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strSegundoNombreOrdenante" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strApellidosOrdenante" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoBancoIntermediario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strBicBancoIntermediario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strNombreBancoIntermediario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDireccionBancoIntermediario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCiudadBancoIntermediario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strPaisBancoIntermediario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoBancoBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strBicBancoBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strNombreBancoBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDireccionBancoBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCiudadBancoBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strPaisBancoBeneficiario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strMotivoGiro" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strIntruccionBancoExterior" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strTipoOperacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strCherckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="strDivision" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="metCheckEditorSwift_ASPClasicoResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="metCheckEditorSwift_ASPClasicoResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="string" nillable="true" type="s:string"/>
+</s:schema>
+</wsdl:types>
+<wsdl:message name="metCheckNameSoapIn">
+<wsdl:part name="parameters" element="tns:metCheckName"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSoapOut">
+<wsdl:part name="parameters" element="tns:metCheckNameResponse"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearchSoapIn">
+<wsdl:part name="parameters" element="tns:metAlternateSearch"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearchSoapOut">
+<wsdl:part name="parameters" element="tns:metAlternateSearchResponse"/>
+</wsdl:message>
+<wsdl:message name="metIDVerificationSoapIn">
+<wsdl:part name="parameters" element="tns:metIDVerification"/>
+</wsdl:message>
+<wsdl:message name="metIDVerificationSoapOut">
+<wsdl:part name="parameters" element="tns:metIDVerificationResponse"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBSSoapIn">
+<wsdl:part name="parameters" element="tns:metCheckNameSBS"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBSSoapOut">
+<wsdl:part name="parameters" element="tns:metCheckNameSBSResponse"/>
+</wsdl:message>
+<wsdl:message name="metIDVerification_ASPClasicoSoapIn">
+<wsdl:part name="parameters" element="tns:metIDVerification_ASPClasico"/>
+</wsdl:message>
+<wsdl:message name="metIDVerification_ASPClasicoSoapOut">
+<wsdl:part name="parameters" element="tns:metIDVerification_ASPClasicoResponse"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearch_ASPClasicoSoapIn">
+<wsdl:part name="parameters" element="tns:metAlternateSearch_ASPClasico"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearch_ASPClasicoSoapOut">
+<wsdl:part name="parameters" element="tns:metAlternateSearch_ASPClasicoResponse"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBS_ASPClasicoSoapIn">
+<wsdl:part name="parameters" element="tns:metCheckNameSBS_ASPClasico"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBS_ASPClasicoSoapOut">
+<wsdl:part name="parameters" element="tns:metCheckNameSBS_ASPClasicoResponse"/>
+</wsdl:message>
+<wsdl:message name="metCheckEditorSwift_ASPClasicoSoapIn">
+<wsdl:part name="parameters" element="tns:metCheckEditorSwift_ASPClasico"/>
+</wsdl:message>
+<wsdl:message name="metCheckEditorSwift_ASPClasicoSoapOut">
+<wsdl:part name="parameters" element="tns:metCheckEditorSwift_ASPClasicoResponse"/>
+</wsdl:message>
+<wsdl:message name="metIDVerification_ASPClasicoHttpGetIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strTipoOrganizacion" type="s:string"/>
+<wsdl:part name="strFirstName" type="s:string"/>
+<wsdl:part name="strMiddleName" type="s:string"/>
+<wsdl:part name="strLastName" type="s:string"/>
+<wsdl:part name="strTipoIdentificacion" type="s:string"/>
+<wsdl:part name="strIdentificacion" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metIDVerification_ASPClasicoHttpGetOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearch_ASPClasicoHttpGetIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strAlternate" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearch_ASPClasicoHttpGetOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBS_ASPClasicoHttpGetIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strIdentificacion" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBS_ASPClasicoHttpGetOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckEditorSwift_ASPClasicoHttpGetIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strReferencia" type="s:string"/>
+<wsdl:part name="strNombreBeneficiario" type="s:string"/>
+<wsdl:part name="strDireccionBeneficiario" type="s:string"/>
+<wsdl:part name="strCiudadBeneficiario" type="s:string"/>
+<wsdl:part name="strPaisBeneficiario" type="s:string"/>
+<wsdl:part name="strIdentificacionBeneficiario" type="s:string"/>
+<wsdl:part name="strTipoOrganizacionOrdenante" type="s:string"/>
+<wsdl:part name="strTipoIdentificacionOrdenante" type="s:string"/>
+<wsdl:part name="strIdentificacionOrdenante" type="s:string"/>
+<wsdl:part name="strPrimerNombreOrdenante" type="s:string"/>
+<wsdl:part name="strSegundoNombreOrdenante" type="s:string"/>
+<wsdl:part name="strApellidosOrdenante" type="s:string"/>
+<wsdl:part name="strTipoBancoIntermediario" type="s:string"/>
+<wsdl:part name="strBicBancoIntermediario" type="s:string"/>
+<wsdl:part name="strNombreBancoIntermediario" type="s:string"/>
+<wsdl:part name="strDireccionBancoIntermediario" type="s:string"/>
+<wsdl:part name="strCiudadBancoIntermediario" type="s:string"/>
+<wsdl:part name="strPaisBancoIntermediario" type="s:string"/>
+<wsdl:part name="strTipoBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strBicBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strNombreBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strDireccionBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strCiudadBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strPaisBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strMotivoGiro" type="s:string"/>
+<wsdl:part name="strIntruccionBancoExterior" type="s:string"/>
+<wsdl:part name="strTipoOperacion" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckEditorSwift_ASPClasicoHttpGetOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metIDVerification_ASPClasicoHttpPostIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strTipoOrganizacion" type="s:string"/>
+<wsdl:part name="strFirstName" type="s:string"/>
+<wsdl:part name="strMiddleName" type="s:string"/>
+<wsdl:part name="strLastName" type="s:string"/>
+<wsdl:part name="strTipoIdentificacion" type="s:string"/>
+<wsdl:part name="strIdentificacion" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metIDVerification_ASPClasicoHttpPostOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearch_ASPClasicoHttpPostIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strAlternate" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metAlternateSearch_ASPClasicoHttpPostOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBS_ASPClasicoHttpPostIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strIdentificacion" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckNameSBS_ASPClasicoHttpPostOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckEditorSwift_ASPClasicoHttpPostIn">
+<wsdl:part name="strCodigoAplicacion" type="s:string"/>
+<wsdl:part name="strReferencia" type="s:string"/>
+<wsdl:part name="strNombreBeneficiario" type="s:string"/>
+<wsdl:part name="strDireccionBeneficiario" type="s:string"/>
+<wsdl:part name="strCiudadBeneficiario" type="s:string"/>
+<wsdl:part name="strPaisBeneficiario" type="s:string"/>
+<wsdl:part name="strIdentificacionBeneficiario" type="s:string"/>
+<wsdl:part name="strTipoOrganizacionOrdenante" type="s:string"/>
+<wsdl:part name="strTipoIdentificacionOrdenante" type="s:string"/>
+<wsdl:part name="strIdentificacionOrdenante" type="s:string"/>
+<wsdl:part name="strPrimerNombreOrdenante" type="s:string"/>
+<wsdl:part name="strSegundoNombreOrdenante" type="s:string"/>
+<wsdl:part name="strApellidosOrdenante" type="s:string"/>
+<wsdl:part name="strTipoBancoIntermediario" type="s:string"/>
+<wsdl:part name="strBicBancoIntermediario" type="s:string"/>
+<wsdl:part name="strNombreBancoIntermediario" type="s:string"/>
+<wsdl:part name="strDireccionBancoIntermediario" type="s:string"/>
+<wsdl:part name="strCiudadBancoIntermediario" type="s:string"/>
+<wsdl:part name="strPaisBancoIntermediario" type="s:string"/>
+<wsdl:part name="strTipoBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strBicBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strNombreBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strDireccionBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strCiudadBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strPaisBancoBeneficiario" type="s:string"/>
+<wsdl:part name="strMotivoGiro" type="s:string"/>
+<wsdl:part name="strIntruccionBancoExterior" type="s:string"/>
+<wsdl:part name="strTipoOperacion" type="s:string"/>
+<wsdl:part name="strCherckBy" type="s:string"/>
+<wsdl:part name="strDivision" type="s:string"/>
+</wsdl:message>
+<wsdl:message name="metCheckEditorSwift_ASPClasicoHttpPostOut">
+<wsdl:part name="Body" element="tns:string"/>
+</wsdl:message>
+<wsdl:portType name="ListasObservadosSearchSoap">
+<wsdl:operation name="metCheckName">
+<wsdl:input message="tns:metCheckNameSoapIn"/>
+<wsdl:output message="tns:metCheckNameSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch">
+<wsdl:input message="tns:metAlternateSearchSoapIn"/>
+<wsdl:output message="tns:metAlternateSearchSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metIDVerification">
+<wsdl:input message="tns:metIDVerificationSoapIn"/>
+<wsdl:output message="tns:metIDVerificationSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS">
+<wsdl:input message="tns:metCheckNameSBSSoapIn"/>
+<wsdl:output message="tns:metCheckNameSBSSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metIDVerification_ASPClasico">
+<wsdl:input message="tns:metIDVerification_ASPClasicoSoapIn"/>
+<wsdl:output message="tns:metIDVerification_ASPClasicoSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<wsdl:input message="tns:metAlternateSearch_ASPClasicoSoapIn"/>
+<wsdl:output message="tns:metAlternateSearch_ASPClasicoSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<wsdl:input message="tns:metCheckNameSBS_ASPClasicoSoapIn"/>
+<wsdl:output message="tns:metCheckNameSBS_ASPClasicoSoapOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<wsdl:input message="tns:metCheckEditorSwift_ASPClasicoSoapIn"/>
+<wsdl:output message="tns:metCheckEditorSwift_ASPClasicoSoapOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:portType name="ListasObservadosSearchHttpGet">
+<wsdl:operation name="metIDVerification_ASPClasico">
+<wsdl:input message="tns:metIDVerification_ASPClasicoHttpGetIn"/>
+<wsdl:output message="tns:metIDVerification_ASPClasicoHttpGetOut"/>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<wsdl:input message="tns:metAlternateSearch_ASPClasicoHttpGetIn"/>
+<wsdl:output message="tns:metAlternateSearch_ASPClasicoHttpGetOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<wsdl:input message="tns:metCheckNameSBS_ASPClasicoHttpGetIn"/>
+<wsdl:output message="tns:metCheckNameSBS_ASPClasicoHttpGetOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<wsdl:input message="tns:metCheckEditorSwift_ASPClasicoHttpGetIn"/>
+<wsdl:output message="tns:metCheckEditorSwift_ASPClasicoHttpGetOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:portType name="ListasObservadosSearchHttpPost">
+<wsdl:operation name="metIDVerification_ASPClasico">
+<wsdl:input message="tns:metIDVerification_ASPClasicoHttpPostIn"/>
+<wsdl:output message="tns:metIDVerification_ASPClasicoHttpPostOut"/>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<wsdl:input message="tns:metAlternateSearch_ASPClasicoHttpPostIn"/>
+<wsdl:output message="tns:metAlternateSearch_ASPClasicoHttpPostOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<wsdl:input message="tns:metCheckNameSBS_ASPClasicoHttpPostIn"/>
+<wsdl:output message="tns:metCheckNameSBS_ASPClasicoHttpPostOut"/>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<wsdl:input message="tns:metCheckEditorSwift_ASPClasicoHttpPostIn"/>
+<wsdl:output message="tns:metCheckEditorSwift_ASPClasicoHttpPostOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="ListasObservadosSearchSoap" type="tns:ListasObservadosSearchSoap">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="metCheckName">
+<soap:operation soapAction="http://tempuri.org/metCheckName" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch">
+<soap:operation soapAction="http://tempuri.org/metAlternateSearch" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metIDVerification">
+<soap:operation soapAction="http://tempuri.org/metIDVerification" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS">
+<soap:operation soapAction="http://tempuri.org/metCheckNameSBS" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metIDVerification_ASPClasico">
+<soap:operation soapAction="http://tempuri.org/metIDVerification_ASPClasico" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<soap:operation soapAction="http://tempuri.org/metAlternateSearch_ASPClasico" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<soap:operation soapAction="http://tempuri.org/metCheckNameSBS_ASPClasico" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<soap:operation soapAction="http://tempuri.org/metCheckEditorSwift_ASPClasico" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="ListasObservadosSearchSoap12" type="tns:ListasObservadosSearchSoap">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="metCheckName">
+<soap12:operation soapAction="http://tempuri.org/metCheckName" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch">
+<soap12:operation soapAction="http://tempuri.org/metAlternateSearch" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metIDVerification">
+<soap12:operation soapAction="http://tempuri.org/metIDVerification" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS">
+<soap12:operation soapAction="http://tempuri.org/metCheckNameSBS" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metIDVerification_ASPClasico">
+<soap12:operation soapAction="http://tempuri.org/metIDVerification_ASPClasico" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<soap12:operation soapAction="http://tempuri.org/metAlternateSearch_ASPClasico" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<soap12:operation soapAction="http://tempuri.org/metCheckNameSBS_ASPClasico" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<soap12:operation soapAction="http://tempuri.org/metCheckEditorSwift_ASPClasico" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="ListasObservadosSearchHttpGet" type="tns:ListasObservadosSearchHttpGet">
+<http:binding verb="GET"/>
+<wsdl:operation name="metIDVerification_ASPClasico">
+<http:operation location="/metIDVerification_ASPClasico"/>
+<wsdl:input>
+<http:urlEncoded/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<http:operation location="/metAlternateSearch_ASPClasico"/>
+<wsdl:input>
+<http:urlEncoded/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<http:operation location="/metCheckNameSBS_ASPClasico"/>
+<wsdl:input>
+<http:urlEncoded/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<http:operation location="/metCheckEditorSwift_ASPClasico"/>
+<wsdl:input>
+<http:urlEncoded/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="ListasObservadosSearchHttpPost" type="tns:ListasObservadosSearchHttpPost">
+<http:binding verb="POST"/>
+<wsdl:operation name="metIDVerification_ASPClasico">
+<http:operation location="/metIDVerification_ASPClasico"/>
+<wsdl:input>
+<mime:content type="application/x-www-form-urlencoded"/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metAlternateSearch_ASPClasico">
+<http:operation location="/metAlternateSearch_ASPClasico"/>
+<wsdl:input>
+<mime:content type="application/x-www-form-urlencoded"/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckNameSBS_ASPClasico">
+<http:operation location="/metCheckNameSBS_ASPClasico"/>
+<wsdl:input>
+<mime:content type="application/x-www-form-urlencoded"/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="metCheckEditorSwift_ASPClasico">
+<http:operation location="/metCheckEditorSwift_ASPClasico"/>
+<wsdl:input>
+<mime:content type="application/x-www-form-urlencoded"/>
+</wsdl:input>
+<wsdl:output>
+<mime:mimeXml part="Body"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="ListasObservadosSearch">
+<wsdl:port name="ListasObservadosSearchSoap" binding="tns:ListasObservadosSearchSoap">
+<soap:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasNegrasSearch.asmx"/>
+</wsdl:port>
+<wsdl:port name="ListasObservadosSearchSoap12" binding="tns:ListasObservadosSearchSoap12">
+<soap12:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasNegrasSearch.asmx"/>
+</wsdl:port>
+<wsdl:port name="ListasObservadosSearchHttpGet" binding="tns:ListasObservadosSearchHttpGet">
+<http:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasNegrasSearch.asmx"/>
+</wsdl:port>
+<wsdl:port name="ListasObservadosSearchHttpPost" binding="tns:ListasObservadosSearchHttpPost">
+<http:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasNegrasSearch.asmx"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

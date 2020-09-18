@@ -8,6 +8,7 @@ echo "4.- IBM Integration Bus + MQ"
 echo "5.- IBM App Connect Enterprise"
 echo "6.- IBM App Connect Enterprise + MQ" 
 echo "7.- IBM Operational Decision Manager for Developers"
+echo "8.- IBM Datapower 10"
 echo "***********************************************************************"
 
 
@@ -48,6 +49,11 @@ case "$varname" in
             echo "********** DEPLOYING ODM **********"
             oc apply -f ODM/odm.yaml
             echo "********** DONE ODM**********"
+            ;;
+        8)
+            echo "********** DEPLOYING DATAPOWER **********"
+            oc apply -f DATAPOWER/datapower.yaml
+            echo "********** DONE DATAPOWER**********"
             ;;
         *)
             echo "Not a valid option"

@@ -1,0 +1,128 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datapower-config
+  namespace: ibmpoc
+data:
+  DATAPOWER_ACCEPT_LICENSE: "true"
+  DATAPOWER_WORKER_THREADS: "4"
+  DATAPOWER_INTERACTIVE: "true"
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datapower-deployment
+  namespace: ibmpoc
+  labels:
+    app: datapower
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datapower
+  template:
+    metadata:
+      labels:
+        app: datapower
+    spec:
+      containers:
+      - name: datapower
+        image: fxnaranjom/pocibmdp:1
+        env:
+          - name: DATAPOWER_ACCEPT_LICENSE
+            valueFrom:
+              configMapKeyRef:
+                name: datapower-config
+                key: DATAPOWER_ACCEPT_LICENSE
+          - name: DATAPOWER_WORKER_THREADS
+            valueFrom:
+              configMapKeyRef:
+                name: datapower-config
+                key: DATAPOWER_WORKER_THREADS
+          - name: DATAPOWER_INTERACTIVE
+            valueFrom:
+              configMapKeyRef:
+                name: datapower-config
+                key: DATAPOWER_INTERACTIVE
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+          name: console
+        - containerPort: 9999
+          name: http
+        - containerPort: 9998
+          name: http2
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: datapower
+spec:
+  selector:
+    app: datapower
+  ports:
+  - protocol: TCP
+    port: 9090
+    name: console
+  - protocol: TCP
+    port: 9999
+    name: http
+  - protocol: TCP
+    port: 9998
+    name: http2
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: datapower-console
+  namespace: ibmpoc
+spec:
+  to:
+    kind: Service
+    name: datapower
+    weight: 100
+  port:
+    targetPort: console
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: datapower-http
+  namespace: ibmpoc
+spec:
+  to:
+    kind: Service
+    name: datapower
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: datapower-http2
+  namespace: ibmpoc
+spec:
+  to:
+    kind: Service
+    name: datapower
+    weight: 100
+  port:
+    targetPort: http2
+  wildcardPolicy: None

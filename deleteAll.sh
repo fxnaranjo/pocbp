@@ -8,6 +8,7 @@ echo "4.- IBM Integration Bus + MQ"
 echo "5.- IBM App Connect Enterprise"
 echo "6.- IBM App Connect Enterprise + MQ" 
 echo "7.- IBM Operational Decision Manager for Developers"
+echo "8.- IBM Datapower 10"
 echo "***********************************************************************"
 
 
@@ -46,9 +47,14 @@ case "$varname" in
             echo "********** DONE ACE+MQ**********"
             ;;
         7)
-            echo "********** DEPLOYING ODM **********"
+            echo "********** DELETING ODM **********"
             oc apply -f ODM/odm.yaml
             echo "********** DONE ODM**********"
+            ;;
+        8)
+            echo "********** DELETING DATAPOWER **********"
+            oc delete -f DATAPOWER/datapower.yaml
+            echo "********** DONE DATAPOWER**********"
             ;;
          
         *)
