@@ -1,0 +1,129 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+<wsdl:types>
+<s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<s:element name="ConsultarListaObservados">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="clienteEntrada" type="tns:EClienteEntrada"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:complexType name="EClienteEntrada">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="CodigoAplicacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="TipoOrganizacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="TipoIdentificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Identificacion" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="CheckBy" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string"/>
+</s:sequence>
+</s:complexType>
+<s:element name="ConsultarListaObservadosResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="ConsultarListaObservadosResult" type="tns:EClienteSalida"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:complexType name="EClienteSalida">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="Cabecera" type="tns:ECabecera"/>
+<s:element minOccurs="0" maxOccurs="1" name="Detalle" type="tns:ArrayOfEDetalle"/>
+</s:sequence>
+</s:complexType>
+<s:complexType name="ECabecera">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="SearchDate" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="TypeIdentification" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Identification" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string"/>
+</s:sequence>
+</s:complexType>
+<s:complexType name="ArrayOfEDetalle">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="unbounded" name="EDetalle" nillable="true" type="tns:EDetalle"/>
+</s:sequence>
+</s:complexType>
+<s:complexType name="EDetalle">
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="Record" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="FileDate" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="WireContext" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="MatchEntityName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="MatchBestName" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="DenyReason" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="MatchListing" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:schema>
+</wsdl:types>
+<wsdl:message name="ConsultarListaObservadosSoapIn">
+<wsdl:part name="parameters" element="tns:ConsultarListaObservados"/>
+</wsdl:message>
+<wsdl:message name="ConsultarListaObservadosSoapOut">
+<wsdl:part name="parameters" element="tns:ConsultarListaObservadosResponse"/>
+</wsdl:message>
+<wsdl:portType name="ListasObservadosBusquedaDetalleSoap">
+<wsdl:operation name="ConsultarListaObservados">
+<wsdl:input message="tns:ConsultarListaObservadosSoapIn"/>
+<wsdl:output message="tns:ConsultarListaObservadosSoapOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:portType name="ListasObservadosBusquedaDetalleHttpGet"/>
+<wsdl:portType name="ListasObservadosBusquedaDetalleHttpPost"/>
+<wsdl:binding name="ListasObservadosBusquedaDetalleSoap" type="tns:ListasObservadosBusquedaDetalleSoap">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="ConsultarListaObservados">
+<soap:operation soapAction="http://tempuri.org/ConsultarListaObservados" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="ListasObservadosBusquedaDetalleSoap12" type="tns:ListasObservadosBusquedaDetalleSoap">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="ConsultarListaObservados">
+<soap12:operation soapAction="http://tempuri.org/ConsultarListaObservados" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="ListasObservadosBusquedaDetalleHttpGet" type="tns:ListasObservadosBusquedaDetalleHttpGet">
+<http:binding verb="GET"/>
+</wsdl:binding>
+<wsdl:binding name="ListasObservadosBusquedaDetalleHttpPost" type="tns:ListasObservadosBusquedaDetalleHttpPost">
+<http:binding verb="POST"/>
+</wsdl:binding>
+<wsdl:service name="ListasObservadosBusquedaDetalle">
+<wsdl:port name="ListasObservadosBusquedaDetalleSoap" binding="tns:ListasObservadosBusquedaDetalleSoap">
+<soap:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasObservadosBusquedaDetalle.asmx"/>
+</wsdl:port>
+<wsdl:port name="ListasObservadosBusquedaDetalleSoap12" binding="tns:ListasObservadosBusquedaDetalleSoap12">
+<soap12:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasObservadosBusquedaDetalle.asmx"/>
+</wsdl:port>
+<wsdl:port name="ListasObservadosBusquedaDetalleHttpGet" binding="tns:ListasObservadosBusquedaDetalleHttpGet">
+<http:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasObservadosBusquedaDetalle.asmx"/>
+</wsdl:port>
+<wsdl:port name="ListasObservadosBusquedaDetalleHttpPost" binding="tns:ListasObservadosBusquedaDetalleHttpPost">
+<http:address location="https://ecbptsnlblo.uio.bpichincha.com/ListasObservadosServiceXG/ListasObservadosBusquedaDetalle.asmx"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

@@ -192,7 +192,7 @@ BrokerRegistry:
   #brokerTruststorePass: 'brokerTruststore::password' # Resource alias containing the trust store password
   #brokerCRLFileList: ''
   #brokerEnableCRLDP: ''
-  #allowSSLv3: ''
+  allowSSLv3: 'true'
   #allowSNI: ''
   #reenableTransportAlgorithms: ''
   #reenableCertificateAlgorithms: ''

@@ -55,6 +55,8 @@ spec:
           name: http
         - containerPort: 9998
           name: http2
+        - containerPort: 9997
+          name: http3
 
 ---
 
@@ -75,6 +77,9 @@ spec:
   - protocol: TCP
     port: 9998
     name: http2
+  - protocol: TCP
+    port: 9997
+    name: http3
 
 ---
 
@@ -125,4 +130,20 @@ spec:
     weight: 100
   port:
     targetPort: http2
+  wildcardPolicy: None
+
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: datapower-http3
+  namespace: ibmpoc
+spec:
+  to:
+    kind: Service
+    name: datapower
+    weight: 100
+  port:
+    targetPort: http3
   wildcardPolicy: None
